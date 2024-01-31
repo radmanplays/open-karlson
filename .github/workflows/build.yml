@@ -26,7 +26,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Client - ${{ matrix.platform }}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
-
-      - name: Write changes to repository
-        uses: stefanzweifel/git-auto-commit-action@v5.0.0
+          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}/${{ matrix.platform }}
