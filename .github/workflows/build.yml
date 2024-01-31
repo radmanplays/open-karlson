@@ -13,7 +13,7 @@ jobs:
       matrix:
         platform: [web, linux, windows, mac]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4.1.1
         with:
           lfs: true
       - name: Build
@@ -29,4 +29,4 @@ jobs:
           path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
 
       - name: Write changes to repository
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5.0.0
