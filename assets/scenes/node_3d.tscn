@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bf8dg43ngamg4"]
+[gd_scene load_steps=26 format=3 uid="uid://bf8dg43ngamg4"]
 
 [ext_resource type="Script" path="res://assets/scripts/node_3d.gd" id="1_urotr"]
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="2_1mwej"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://assets/scripts/Label.gd" id="6_l2ujs"]
 [ext_resource type="Script" path="res://assets/scripts/Label2.gd" id="7_mbfl5"]
 [ext_resource type="Texture2D" uid="uid://do7cvc0bbbkjg" path="res://assets/textures/Barrel.png" id="8_81h6f"]
+[ext_resource type="Script" path="res://assets/scripts/barrel.gd" id="8_arnue"]
 [ext_resource type="ArrayMesh" uid="uid://cvtvrn40rlvkg" path="res://assets/models/Barrel.obj" id="9_xymw8"]
 [ext_resource type="Script" path="res://assets/scripts/milk.gd" id="10_0wxxn"]
 [ext_resource type="ArrayMesh" uid="uid://c2vnvu05t4xb3" path="res://assets/models/milk.obj" id="10_51xfr"]
@@ -213,6 +214,7 @@ use_collision = true
 size = Vector3(0.625565, 3.18579, 42.3532)
 
 [node name="barrel" type="CharacterBody3D" parent="."]
+script = ExtResource("8_arnue")
 
 [node name="Barrel" type="MeshInstance3D" parent="barrel"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.96415, 0.179794, -1.90376)
