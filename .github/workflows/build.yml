@@ -3,15 +3,18 @@ permissions:
   contents: write
 
 on:
-  push: {}
-  pull_request: {}
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
 
 jobs:
   Godot:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [web, linux, windows, mac]
+        platform: [HTML5, linux, windows, mac]
     steps:
       - uses: actions/checkout@v4.1.1
         with:
@@ -22,8 +25,13 @@ jobs:
         with:
           preset: ${{ matrix.platform }}
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: Client - ${{ matrix.platform }}
-          path: ${{ github.workspace }}/build/${{ matrix.platform }}
+      - name: Write changes to repository
+        uses: stefanzweifel/git-auto-commit-action@v4
+
+      - name: "Run if changes have been detected"
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        run: echo "Changes!"
+    
+      - name: "Run if no changes have been detected"
+        if: steps.auto-commit-action.outputs.changes_detected == 'false'
+        run: echo "No Changes!"
