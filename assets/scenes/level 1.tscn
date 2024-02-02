@@ -1,43 +1,335 @@
-[gd_scene load_steps=8 format=3 uid="uid://c52k2b3uowrje"]
+[gd_scene load_steps=30 format=3 uid="uid://c52k2b3uowrje"]
 
 [ext_resource type="Texture2D" uid="uid://b8wqf4a7y8wn7" path="res://assets/textures/Floor.png" id="1_c3y4x"]
+[ext_resource type="Script" path="res://assets/scripts/node_3d.gd" id="1_ysmwh"]
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="2_n1ryp"]
-[ext_resource type="PackedScene" uid="uid://daumxjq7jnjp8" path="res://addons/shaky_camera_3d/shaky_camera_3d.tscn" id="3_lhybx"]
+[ext_resource type="Script" path="res://addons/grappling_hook_3d/src/hook_controller.gd" id="2_reac0"]
+[ext_resource type="PackedScene" uid="uid://daumxjq7jnjp8" path="res://build/addons/shaky_camera_3d/shaky_camera_3d.tscn" id="3_lhybx"]
+[ext_resource type="ArrayMesh" uid="uid://c6tdrevnw37yb" path="res://Grappler.obj" id="4_2fytr"]
+[ext_resource type="Script" path="res://assets/scripts/Grappler.gd" id="5_elrmw"]
+[ext_resource type="Texture2D" uid="uid://djhie07xb2mr2" path="res://assets/textures/prototype_512x512_grey2.png" id="5_qifio"]
+[ext_resource type="Script" path="res://assets/scripts/HUD.gd" id="7_yuhyr"]
+[ext_resource type="Texture2D" uid="uid://d10ubjioqikad" path="res://assets/textures/Orange.png" id="8_80ldw"]
+[ext_resource type="Texture2D" uid="uid://b8u7xcl2k75g2" path="res://assets/textures/other_Red.png" id="10_c0k31"]
+[ext_resource type="Script" path="res://assets/scripts/milk.gd" id="11_vuvj7"]
+[ext_resource type="ArrayMesh" uid="uid://c2vnvu05t4xb3" path="res://assets/models/milk.obj" id="12_apn7e"]
+[ext_resource type="Shader" path="res://addons/sky/sky.gdshader" id="13_k2rp6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_08ggx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orkgg"]
+albedo_texture = ExtResource("8_80ldw")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_4b4re"]
+albedo_texture = ExtResource("5_qifio")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_80edo"]
+shading_mode = 0
+diffuse_mode = 1
 albedo_texture = ExtResource("1_c3y4x")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 150.0
+uv1_world_triplanar = true
+grow = true
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_2fpf3"]
-albedo_color = Color(0, 0.313726, 0.12549, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ft3c"]
+albedo_texture = ExtResource("8_80ldw")
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_qihmn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pnm8"]
+albedo_texture = ExtResource("10_c0k31")
+uv1_triplanar = true
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m6j34"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lgk4x"]
+points = PackedVector3Array(-0.770178, 0.642254, -1.00569, -0.322058, 2.60637, 1.01937, 0.038173, 2.82531, 0.916535, 0.918851, -1.59791, 0.952281, 0.9413, 1.96557, -1.04053, -1.00732, -1.65396, 0.97768, 0.93409, -1.63274, -1.03306, -1, 1.95765, -0.965814, -1.00732, -1.65396, -0.972869, 0.919017, 1.93374, 0.952452, -1, 1.95765, 0.970101, 0.038173, 2.82531, -0.911281, -0.322058, 2.67909, -1.01168, 0.258115, 2.75134, -1.01168, -0.394629, 2.60637, 1.01937, -0.505045, -1.58722, -1.01244, -0.943807, 2.04835, 0.984578, -0.943807, 2.04835, -0.97929, 0.312323, 2.57256, 0.897098, -0.504962, 1.92617, -1.01227, 0.330686, 2.67909, -1.01168, -0.100516, 2.77401, 0.894895, -0.100516, 2.77401, -0.891243)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2omx0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jwdh7"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pgct5"]
+albedo_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgm1n"]
+albedo_color = Color(0.384314, 0.513726, 0.741176, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2305t"]
+albedo_color = Color(0.384314, 0.513726, 0.741176, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ept2a"]
+shader = ExtResource("13_k2rp6")
+shader_parameter/day_top_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/day_bottom_color = Color(0.4, 0.8, 1, 1)
+shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
+shader_parameter/sunset_bottom_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.1, 0, 0.2, 1)
+shader_parameter/horizon_color = Color(0, 0.7, 0.8, 1)
+shader_parameter/horizon_blur = 0.05
+shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_sunset_color = Color(10, 0, 0, 1)
+shader_parameter/sun_size = 0.2
+shader_parameter/sun_blur = 10.0
+shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/moon_size = 0.06
+shader_parameter/moon_blur = 0.1
+shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
+shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
+shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
+shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
+shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_direction = 0.2
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_fuzziness = 0.5
+shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_blur = 0.25
+shader_parameter/stars_speed = 1.0
+shader_parameter/stars_scale = 1.0
+shader_parameter/stars_opacity = 1.0
+shader_parameter/overwritten_time = 0.0
+
+[sub_resource type="Sky" id="Sky_rp7pp"]
+sky_material = SubResource("ShaderMaterial_ept2a")
+
+[sub_resource type="Environment" id="Environment_r1u5i"]
+background_mode = 2
+background_energy_multiplier = 1.18
+sky = SubResource("Sky_rp7pp")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_intensity = 8.0
+glow_strength = 2.0
+glow_bloom = 1.0
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+glow_hdr_luminance_cap = 256.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_elwvs"]
+albedo_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
 [node name="Level1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 82.7799, 0)
+script = ExtResource("1_ysmwh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 1.09455, -0.180369, -0.574099)
+light_energy = 5.189
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 1.757
+shadow_reverse_cull_face = true
+shadow_transmittance_bias = -16.0
+shadow_blur = 0.0
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.783257, 5.4635, -11.8037)
+material_override = SubResource("StandardMaterial3D_orkgg")
+use_collision = true
+size = Vector3(2.52693, 2.27979, 2.3604)
+material = SubResource("ORMMaterial3D_4b4re")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.532248, 3.87008, -3.06159)
+use_collision = true
+size = Vector3(6.56735, 5.27537, 0.801272)
+material = SubResource("ORMMaterial3D_80edo")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55609, 3.87045, -0.0304672)
+use_collision = true
+size = Vector3(5.47496, 5.27537, 0.801272)
+material = SubResource("ORMMaterial3D_80edo")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6.63778, 4.09768, -3.16067)
+use_collision = true
+size = Vector3(6.56735, 4.78405, 0.801272)
+material = SubResource("ORMMaterial3D_80edo")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.04346, 6.15318, -18.9608)
+material_override = SubResource("StandardMaterial3D_orkgg")
+use_collision = true
+size = Vector3(2.52693, 2.27979, 2.3604)
+material = SubResource("ORMMaterial3D_4b4re")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.546328, 6.34328, -34.7174)
+material_override = SubResource("StandardMaterial3D_3ft3c")
+use_collision = true
+size = Vector3(5.08395, 4.51547, 4.74951)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.653038, 0.757326, 0, -0.757326, 0.653038, 0, 0, 0, 1, 16.0761, -13.9994, -69.1002)
+material_override = SubResource("StandardMaterial3D_4pnm8")
+ignore_occlusion_culling = true
+use_collision = true
+size = Vector3(29.4429, 0.500488, 4.28513)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -6.56961, 6.67442, -49.4138)
+material_override = SubResource("StandardMaterial3D_orkgg")
+use_collision = true
+size = Vector3(2.52693, 2.27979, 2.3604)
+material = SubResource("ORMMaterial3D_4b4re")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88015, -3.69793, -63.6757)
+use_collision = true
+size = Vector3(21.6411, 1.28873, 15.6852)
+material = SubResource("ORMMaterial3D_80edo")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGBox3D10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.2888, -21.567, -6.29058)
+use_collision = true
+size = Vector3(21.6411, 1.28873, 15.6852)
+material = SubResource("ORMMaterial3D_80edo")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.147854, 8.57774, -4.92308)
-material_override = SubResource("StandardMaterial3D_08ggx")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.54107, 1.83848, -3.37445)
 use_collision = true
-flip_faces = true
-size = Vector3(40.0952, 19.056, 32.6008)
-material = SubResource("ORMMaterial3D_2fpf3")
+size = Vector3(5.4562, 1.28873, 6.0374)
+material = SubResource("ORMMaterial3D_80edo")
+
+[node name="Label" type="Label3D" parent="."]
+transform = Transform3D(0.677557, 0, -0.73547, 0, 1, 0, 0.73547, 0, 0.677557, 6.46885, -1.52689, -70.0648)
+pixel_size = 0.01
+double_sided = false
+texture_filter = 5
+text = "down here
+\\/"
+
+[node name="milk" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4946, -22.8719, -69.61)
+script = ExtResource("11_vuvj7")
+
+[node name="milk" type="MeshInstance3D" parent="milk"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -2.37987, -0.570317, 1.12864)
+mesh = ExtResource("12_apn7e")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="milk"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -2.37987, -0.570317, 1.12864)
+shape = SubResource("ConvexPolygonShape3D_lgk4x")
 
 [node name="player" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0647307, -0.3277, -1.24529)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -3.42518, 2.68467, -1.98272)
 script = ExtResource("2_n1ryp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.231402, 1.07165, 0)
-mesh = SubResource("CapsuleMesh_qihmn")
+mesh = SubResource("CapsuleMesh_2omx0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.231402, 1.07165, 0)
-shape = SubResource("ConvexPolygonShape3D_m6j34")
+shape = SubResource("ConvexPolygonShape3D_jwdh7")
 
 [node name="Node3D" type="Node3D" parent="player"]
 
 [node name="ShakyCamera3D" parent="player/Node3D" instance=ExtResource("3_lhybx")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.152281, 1.66681, 0.112175)
+
+[node name="Grappler" type="MeshInstance3D" parent="player/Node3D/ShakyCamera3D"]
+transform = Transform3D(-2.18557e-09, 0, 0.05, 0, 0.05, 0, -0.05, 0, -2.18557e-09, 0.447735, -0.312986, -0.598757)
+mesh = ExtResource("4_2fytr")
+skeleton = NodePath("../../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_pgct5")
+script = ExtResource("5_elrmw")
+
+[node name="Node3D" type="Node3D" parent="player/Node3D/ShakyCamera3D/Grappler"]
+transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 4.65809, 1.76929, -0.135376)
+
+[node name="Hook Raycast" type="RayCast3D" parent="player/Node3D/ShakyCamera3D/Grappler"]
+transform = Transform3D(-8.74228e-07, 0, -20, 0, 20, 0, 20, 0, -8.74228e-07, -11.1723, 7.13316, -8.9547)
+target_position = Vector3(0, 0, -60)
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("7_yuhyr")
+
+[node name="CenterContainer" type="CenterContainer" parent="Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 42.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="Control2/CenterContainer"]
+points = PackedVector2Array(-2, 0, -2, -3.11753, -2, -5)
+width = 2.0
+
+[node name="Line2D2" type="Line2D" parent="Control2/CenterContainer"]
+points = PackedVector2Array(6, 3, 1, 3)
+width = 2.0
+
+[node name="Line2D3" type="Line2D" parent="Control2/CenterContainer"]
+points = PackedVector2Array(-5, 3, -10, 3)
+width = 2.0
+
+[node name="Line2D4" type="Line2D" parent="Control2/CenterContainer"]
+points = PackedVector2Array(-2, 6, -2, 11)
+width = 2.0
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Control2"]
+transform = Transform3D(-0.00380523, 0, 0.999205, 0, 0.753337, 0, -0.828985, 0, -0.00458658, 32.5649, 58.5331, -67.7127)
+use_collision = true
+size = Vector3(0.228027, 1, 0.177734)
+material = SubResource("StandardMaterial3D_tgm1n")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Control2"]
+transform = Transform3D(-0.00380523, 0, 0.999205, 0, 0.753337, 0, -0.828985, 0, -0.00458658, 31.7296, 58.5266, -67.7091)
+use_collision = true
+size = Vector3(0.228027, 1, 0.177734)
+material = SubResource("StandardMaterial3D_2305t")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Control2"]
+transform = Transform3D(-0.00380523, 0, 0.999205, 0, 0.753337, 0, -0.828985, 0, -0.00458658, 32.5558, 58.5488, -69.2021)
+use_collision = true
+size = Vector3(0.228027, 1, 0.177734)
+material = SubResource("StandardMaterial3D_tgm1n")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Control2"]
+transform = Transform3D(-0.00380523, 0, 0.999205, 0, 0.753337, 0, -0.828985, 0, -0.00458658, 31.7091, 58.5422, -69.2237)
+use_collision = true
+size = Vector3(0.228027, 1, 0.177734)
+material = SubResource("StandardMaterial3D_2305t")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Control2"]
+transform = Transform3D(-0.00380523, 0, 0.999205, 0, 0.753337, 0, -0.828985, 0, -0.00458658, 32.1361, 58.9393, -68.4669)
+use_collision = true
+size = Vector3(2.08096, 0.124969, 1.03894)
+material = SubResource("StandardMaterial3D_tgm1n")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r1u5i")
+
+[node name="HookController" type="Node" parent="." node_paths=PackedStringArray("hook_raycast", "player_body", "hook_source")]
+script = ExtResource("2_reac0")
+hook_raycast = NodePath("../player/Node3D/ShakyCamera3D/Grappler/Hook Raycast")
+player_body = NodePath("../player")
+launch_action_name = "leftclick"
+retract_action_name = "leftclick"
+hook_source = NodePath("../player/Node3D/ShakyCamera3D/Grappler/Node3D")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.34992, 2.63894, -3.96699)
+use_collision = true
+
+[node name="Grappler" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0058708, 0, 0.0496541, 0, 0.05, 0, -0.0496541, 0, -0.0058708, -5.29165, 3.2516, -4.00765)
+mesh = ExtResource("4_2fytr")
+surface_material_override/0 = SubResource("StandardMaterial3D_elwvs")

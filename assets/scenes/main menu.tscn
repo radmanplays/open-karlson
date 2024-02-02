@@ -1,34 +1,213 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1rlxa5bwdt7d"]
+[gd_scene load_steps=20 format=3 uid="uid://d1rlxa5bwdt7d"]
 
-[ext_resource type="Script" path="res://assets/scripts/Button-menu.gd" id="1_w6otu"]
+[ext_resource type="PackedScene" uid="uid://daumxjq7jnjp8" path="res://build/addons/shaky_camera_3d/shaky_camera_3d.tscn" id="1_d8aju"]
+[ext_resource type="Script" path="res://assets/scripts/milk.gd" id="1_kft8u"]
+[ext_resource type="Texture2D" uid="uid://47cnkabwcvid" path="res://assets/textures/prototype_512x512_white.png" id="1_ytqrk"]
+[ext_resource type="ArrayMesh" uid="uid://c2vnvu05t4xb3" path="res://assets/models/milk.obj" id="2_2sbli"]
+[ext_resource type="Script" path="res://addons/shaky_camera_3d/shaky_camera_3d-menu.gd" id="5_uys80"]
+[ext_resource type="Script" path="res://assets/scripts/Button-menu.gd" id="6_a1wn8"]
+[ext_resource type="Script" path="res://assets/scripts/Node2D.gd" id="7_26m5v"]
+[ext_resource type="Script" path="res://assets/scripts/Button2-menu.gd" id="7_gt5sq"]
+[ext_resource type="Texture2D" uid="uid://86yoalqymqx" path="res://assets/textures/level 1.png" id="8_61w0v"]
+[ext_resource type="Texture2D" uid="uid://ccytl41tebi05" path="res://assets/textures/test 1.png" id="9_n1i75"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -2.0
-offset_right = -2.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ytxq"]
+albedo_texture = ExtResource("1_ytqrk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cc8p"]
+albedo_texture = ExtResource("1_ytqrk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vtua"]
+albedo_texture = ExtResource("1_ytqrk")
+uv1_triplanar_sharpness = 71.0124
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3m3m"]
+albedo_texture = ExtResource("1_ytqrk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fyf3k"]
+albedo_texture = ExtResource("1_ytqrk")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2ewlt"]
+points = PackedVector3Array(-0.770178, 0.642254, -1.00569, -0.322058, 2.60637, 1.01937, 0.038173, 2.82531, 0.916535, 0.918851, -1.59791, 0.952281, 0.9413, 1.96557, -1.04053, -1.00732, -1.65396, 0.97768, 0.93409, -1.63274, -1.03306, -1, 1.95765, -0.965814, -1.00732, -1.65396, -0.972869, 0.919017, 1.93374, 0.952452, -1, 1.95765, 0.970101, 0.038173, 2.82531, -0.911281, -0.322058, 2.67909, -1.01168, 0.258115, 2.75134, -1.01168, -0.394629, 2.60637, 1.01937, -0.505045, -1.58722, -1.01244, -0.943807, 2.04835, 0.984578, -0.943807, 2.04835, -0.97929, 0.312323, 2.57256, 0.897098, -0.504962, 1.92617, -1.01227, 0.330686, 2.67909, -1.01168, -0.100516, 2.77401, 0.894895, -0.100516, 2.77401, -0.891243)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11lqs"]
+albedo_texture = ExtResource("1_ytqrk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tm6hq"]
+albedo_color = Color(0.384314, 0.513726, 0.741176, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0105"]
+albedo_color = Color(0.384314, 0.513726, 0.741176, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.828367, 0.196663, -0.52453, -0.0291809, 0.91993, 0.390996, 0.559425, 0.339194, -0.756301, 0.0151232, 7.11005, -2.61939)
+light_energy = 0.2
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.89956, 6.91986, -1.21311)
+material_override = SubResource("StandardMaterial3D_0ytxq")
+use_collision = true
+size = Vector3(8.22166, 5.27537, 0.801272)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00783, 6.90522, 2.6447)
+material_override = SubResource("StandardMaterial3D_7cc8p")
+use_collision = true
+size = Vector3(7.31707, 5.27537, 0.801272)
+material = SubResource("StandardMaterial3D_5vtua")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.99491, 7.13245, -1.38414)
+material_override = SubResource("StandardMaterial3D_g3m3m")
+use_collision = true
+size = Vector3(8.36461, 4.78405, 0.801272)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.987198, 4.87325, -1.51293)
+material_override = SubResource("StandardMaterial3D_fyf3k")
+use_collision = true
+size = Vector3(7.227, 1.28873, 7.6647)
+
+[node name="milk" type="CharacterBody3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.376612, 2.58741, 1.47548)
+script = ExtResource("1_kft8u")
+
+[node name="milk" type="MeshInstance3D" parent="CSGBox3D/milk"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -2.37987, -0.570317, 1.12864)
+mesh = ExtResource("2_2sbli")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/milk"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -2.37987, -0.570317, 1.12864)
+shape = SubResource("ConvexPolygonShape3D_2ewlt")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17202, 9.59934, -1.73339)
+material_override = SubResource("StandardMaterial3D_11lqs")
+use_collision = true
+size = Vector3(7.41084, 0.981279, 7.49331)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02537, 6.93994, -5.47707)
+use_collision = true
+size = Vector3(7.10418, 5.27537, 0.801272)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.897918, 0.14576, 0.415328, 0.00146132, 0.94456, -0.328336, -0.44016, -0.294212, -0.84835, 0.11639, 7.40539, -3.39772)
+light_energy = 0.351
+
+[node name="ShakyCamera3D" parent="." instance=ExtResource("1_d8aju")]
+transform = Transform3D(-0.999952, 0, 0.00979113, 0, 1, 0, -0.00979113, 0, -0.999952, 0.499396, 6.84021, -1.46708)
+fov = 73.5029
+script = ExtResource("5_uys80")
+type_of_shake = 1
+multiplier_position = 5.0
+multiplier_rotation = 5.0
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90227, 5.98228, 1.49505)
+size = Vector3(0.228027, 1, 0.177734)
+material = SubResource("StandardMaterial3D_tm6hq")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85066, 5.97358, 0.613981)
+size = Vector3(0.228027, 1, 0.177734)
+material = SubResource("StandardMaterial3D_j0105")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0296845, 6.00304, 1.48308)
+size = Vector3(0.228027, 1, 0.177734)
+material = SubResource("StandardMaterial3D_tm6hq")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000433983, 5.99434, 0.602017)
+size = Vector3(0.228027, 1, 0.177734)
+material = SubResource("StandardMaterial3D_j0105")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.914437, 6.44201, 1.02478)
+size = Vector3(2.08096, 0.124969, 1.03894)
+material = SubResource("StandardMaterial3D_tm6hq")
 
 [node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 331.0
-offset_right = 647.0
-offset_bottom = 362.0
+offset_left = 102.0
+offset_top = 148.0
+offset_right = 211.0
+offset_bottom = 189.0
 scale = Vector2(1.5, 1.5)
 text = "play"
-script = ExtResource("1_w6otu")
+script = ExtResource("6_a1wn8")
 
-[node name="Label" type="Label" parent="."]
+[node name="ShakyCamera3D2" parent="." instance=ExtResource("1_d8aju")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.152672, 6.80348, -1.91582)
+fov = 73.5029
+script = null
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 105.0
+offset_top = 249.0
+offset_right = 214.0
+offset_bottom = 290.0
+scale = Vector2(1.5, 1.5)
+text = "quit"
+script = ExtResource("7_gt5sq")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("7_26m5v")
+
+[node name="Button2" type="Button" parent="Node2D"]
+offset_left = 41.0
+offset_top = 42.0
+offset_right = 150.0
+offset_bottom = 83.0
+scale = Vector2(1.5, 1.5)
+text = "back
+"
+
+[node name="Button-menu" type="Button" parent="Node2D"]
+offset_left = 188.0
+offset_top = 139.0
+offset_right = 876.0
+offset_bottom = 500.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("8_61w0v")
+
+[node name="Label" type="Label" parent="Node2D/Button-menu"]
 layout_mode = 0
-offset_left = 480.0
-offset_top = 151.0
-offset_right = 542.0
-offset_bottom = 183.0
-scale = Vector2(3.5, 3.5)
-text = "a game"
+offset_left = 212.0
+offset_top = 390.0
+offset_right = 262.0
+offset_bottom = 413.0
+scale = Vector2(5, 5)
+text = "level 1"
 
+[node name="Button2-menu2" type="Button" parent="Node2D"]
+offset_left = 607.0
+offset_top = 139.0
+offset_right = 1247.0
+offset_bottom = 500.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("9_n1i75")
+
+[node name="Label" type="Label" parent="Node2D/Button2-menu2"]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 390.0
+offset_right = 262.0
+offset_bottom = 413.0
+scale = Vector2(5, 5)
+text = "test 1"
+
+[connection signal="pressed" from="Button" to="ShakyCamera3D" method="_on_button_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="Button2" method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="Node2D" method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
+[connection signal="pressed" from="Node2D/Button2" to="ShakyCamera3D" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Node2D/Button2" to="Button" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Node2D/Button2" to="Button2" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Node2D/Button2" to="Node2D" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Node2D/Button-menu" to="Node2D" method="_on_buttonmenu_pressed"]
+[connection signal="pressed" from="Node2D/Button2-menu2" to="Node2D" method="_on_button_2_menu_2_pressed"]

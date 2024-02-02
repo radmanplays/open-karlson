@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://bf8dg43ngamg4"]
+[gd_scene load_steps=27 format=3 uid="uid://bf8dg43ngamg4"]
 
 [ext_resource type="Script" path="res://assets/scripts/node_3d.gd" id="1_urotr"]
 [ext_resource type="Script" path="res://assets/scripts/player.gd" id="2_1mwej"]
-[ext_resource type="PackedScene" uid="uid://daumxjq7jnjp8" path="res://addons/shaky_camera_3d/shaky_camera_3d.tscn" id="3_128qc"]
+[ext_resource type="PackedScene" uid="uid://daumxjq7jnjp8" path="res://build/addons/shaky_camera_3d/shaky_camera_3d.tscn" id="3_128qc"]
 [ext_resource type="Texture2D" uid="uid://djhie07xb2mr2" path="res://assets/textures/prototype_512x512_grey2.png" id="4_gxw2u"]
 [ext_resource type="Script" path="res://assets/scripts/Button.gd" id="5_5gp17"]
 [ext_resource type="Script" path="res://assets/scripts/Label.gd" id="6_l2ujs"]
@@ -12,6 +12,7 @@
 [ext_resource type="ArrayMesh" uid="uid://cvtvrn40rlvkg" path="res://assets/models/Barrel.obj" id="9_xymw8"]
 [ext_resource type="Script" path="res://assets/scripts/milk.gd" id="10_0wxxn"]
 [ext_resource type="ArrayMesh" uid="uid://c2vnvu05t4xb3" path="res://assets/models/milk.obj" id="10_51xfr"]
+[ext_resource type="Script" path="res://assets/scripts/HUD.gd" id="13_xylno"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0chf1"]
 
@@ -44,12 +45,12 @@ data = PackedVector3Array(0.1951, -1.7836, -0.9808, 0.1951, 1.7836, -0.9808, 0, 
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_o54el"]
+[sub_resource type="Sky" id="Sky_mo2l7"]
 sky_material = SubResource("ProceduralSkyMaterial_thv0p")
 
 [sub_resource type="Environment" id="Environment_l2k0s"]
 background_mode = 2
-sky = SubResource("Sky_o54el")
+sky = SubResource("Sky_mo2l7")
 tonemap_mode = 2
 glow_intensity = 8.0
 glow_strength = 2.0
@@ -66,7 +67,8 @@ script = ExtResource("1_urotr")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-light_energy = 5.405
+light_energy = 2.81
+light_bake_mode = 1
 shadow_enabled = true
 shadow_bias = 0.0
 shadow_normal_bias = 1.757
@@ -214,6 +216,7 @@ use_collision = true
 size = Vector3(0.625565, 3.18579, 42.3532)
 
 [node name="barrel" type="CharacterBody3D" parent="."]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 script = ExtResource("8_arnue")
 
 [node name="Barrel" type="MeshInstance3D" parent="barrel"]
@@ -241,3 +244,43 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="milk"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -2.37987, -0.570317, 1.12864)
 shape = SubResource("ConvexPolygonShape3D_e7gnr")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("13_xylno")
+
+[node name="CenterContainer" type="CenterContainer" parent="Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 42.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="Control2/CenterContainer"]
+points = PackedVector2Array(-2, 0, -2, -3.11753, -2, -5)
+width = 2.0
+
+[node name="Line2D2" type="Line2D" parent="Control2/CenterContainer"]
+points = PackedVector2Array(6, 3, 1, 3)
+width = 2.0
+
+[node name="Line2D3" type="Line2D" parent="Control2/CenterContainer"]
+points = PackedVector2Array(-5, 3, -10, 3)
+width = 2.0
+
+[node name="Line2D4" type="Line2D" parent="Control2/CenterContainer"]
+points = PackedVector2Array(-2, 6, -2, 11)
+width = 2.0

@@ -5,7 +5,7 @@ const shakycamera = preload("res://addons/shaky_camera_3d/internal/scripts/shaky
 
 
 
-var SPEED = 3.5
+var SPEED = 5
 static var JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.004
 var s = scale.y
@@ -39,16 +39,21 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-50), deg_to_rad(70))
 
 	if event is InputEventScreenTouch:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-50), deg_to_rad(70))
 
 func _physics_process(delta):
 	
 	# Add the gravity.
+	match is_on_floor():
+		true: velocity *= Vector3(0.07, 1, 0.07)
+		false: velocity *= Vector3(0.85, 1, 0.85)
+	
+	# Gravity & Jumping
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -78,8 +83,5 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
 
 	move_and_slide()

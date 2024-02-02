@@ -2,6 +2,7 @@ extends Button
 
 
 func _ready():
+	visible = true
 	pass
 	
 
@@ -11,5 +12,10 @@ func _process(delta):
 
 
 func _on_pressed():
-	get_tree().change_scene_to_file("res://assets/scenes/node_3d.tscn")
+	visible = false
+	pass # Replace with function body.
+
+
+func _on_button_2_pressed():
+	visible = true
 	pass # Replace with function body.
